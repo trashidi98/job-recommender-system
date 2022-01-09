@@ -45,7 +45,6 @@ def cleanResume(resumeText):
     resumeText = re.sub('s+', ' ', resumeText)  # remove extra whitespace
     return resumeText
 
-
 resumes['cleaned_resume'] = resumes.Resume.apply(lambda x: cleanResume(x))
 
 del resumes["Category"]
