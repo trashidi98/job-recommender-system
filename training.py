@@ -15,7 +15,6 @@ import numpy as np
 from nltk.tokenize import word_tokenize
 import matplotlib
 import matplotlib.pyplot as plt
-
 import gensim.corpora as corpora
 import gensim
 from sklearn.feature_extraction.text import CountVectorizer
