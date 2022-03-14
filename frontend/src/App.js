@@ -1,22 +1,40 @@
 import logo from './logo.svg';
 import './App.css';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import React, { useState } from 'react';
+
+
 
 function App() {
+
+  const [file, setSelectedFile] = useState("");  
+ 
+  function getSelectedFile(eventFileBlob) {
+    setSelectedFile(eventFileBlob); 
+    console.log(file);
+
+
+    var reader = new FileReader();
+    
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hi Shahbaz
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      
+      <Stack spacing={60} direction="row">
+        <Button variant="contained">Contained</Button>        
+        <Button variant="contained">Contained</Button>
+        <Button variant="contained">Contained</Button>
+      </Stack>
+
+
+      <Button variant="contained" component="label"> Upload File
+        <input type="file" onChange={(e) => getSelectedFile(e.target.files[0])} hidden/>
+      </Button>
+
       </header>
     </div>
   );
