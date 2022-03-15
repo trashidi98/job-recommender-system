@@ -13,56 +13,62 @@ function App() {
   
   const [title, setTitle] = useState("");
   const [wholeText, setText] = useState("");
- 
-//   function getSelectedFile(eventFileBlob) {
-//     console.log(eventFileBlob);
 
-
-//     var reader = new FileReader();
-//     reader.readAsArrayBuffer(eventFileBlob);
-
-//     reader.onload = (e) => {
-//         console.log(e.target.result);
-//         var enc = new TextDecoder("utf-8");
-
-//         console.log(enc.decode(e.target.result));
-    
-//         var mam = mammoth.extractRawText(e.target.result);
-
-//         console.log(mam); 
-//     }
-//   }
-
-    // reader.onload = () => {
-    //     extractRawText({ eventFileBlob })
-    //         .then(result => {console.log(result.value)})
-    // }}
-
-
-  function extractWordRawText(arrayBuffer) {
+  function extractTextFromDocx(arrayBuffer) {
     mammoth
       .extractRawText({ arrayBuffer })
       .then(result => {
-        const text = result.value; // The raw text
-        const messages = result.messages; // Please handle messages
+        
+        const text = result.value; 
+        
+        const messages = result.messages; 
+        
         setText( text );
 
         console.log(text); 
-      })
-      .done();
+      });
+  }
 
+  function validateFile(fileName) {
+    
+    let docxFileExtension = /(\.docx)/i;
 
-  };
+    if(docxFileExtension.exec(fileName)) {
+
+        return true; 
+    }
+
+    else{
+        return false; 
+    }
+
+  }
 
   function handleFileChange(file) {
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(file);
-    reader.onload = e => {
-      extractWordRawText(e.target.result);
-    };
-
+    
     setTitle( file.name );
-  };
+
+    console.log("Recieved and processed file: " + title); 
+
+    let isValidFile = validateFile(file.name); 
+
+    if( isValidFile ) {
+    
+        const reader = new FileReader();
+    
+        reader.readAsArrayBuffer(file);
+        
+        reader.onload = e => {
+            extractTextFromDocx(e.target.result);
+        }
+    }
+
+    else {
+        alert("File type not supported! Please convert to docx format")
+    }
+
+    
+  }
 
 
   return (
