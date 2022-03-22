@@ -9,6 +9,9 @@ from apps.ml.registry import MLRegistry
 from server.wsgi import registry
 from django.shortcuts import render
 
+from apps.endpoints.models import UserResume
+from apps.endpoints.serializers import UserResumeSerializer
+
 from apps.endpoints.models import BestJobsOutput
 from apps.endpoints.serializers import BestJobsOutputSerializer
 
@@ -27,6 +30,10 @@ from apps.endpoints.serializers import MLRequestSerializer
 def front(request):
     context = { }
     return render(request, "index.html", context)
+
+class UserResumeViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+    serializer_class = UserResumeSerializer
+    queryset = UserResume.objects.all()
 
 class BestJobsOutputViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = BestJobsOutputSerializer

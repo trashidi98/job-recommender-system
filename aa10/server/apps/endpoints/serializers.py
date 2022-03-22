@@ -5,6 +5,13 @@ from apps.endpoints.models import MLAlgorithm
 from apps.endpoints.models import MLAlgorithmStatus
 from apps.endpoints.models import MLRequest
 from apps.endpoints.models import BestJobsOutput
+from apps.endpoints.models import UserResume
+
+class UserResumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserResume
+        read_only_fields = ("resume_text")
+        fields = ("resume_text")
 
 class BestJobsOutputSerializer(serializers.ModelSerializer):
     class Meta:

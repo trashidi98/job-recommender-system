@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { cities } from '../data/cities';
+import axios from 'axios'; 
+axios.defaults.withCredentials = true;
 
 function HomePage() {
 
@@ -31,7 +33,12 @@ function HomePage() {
         const messages = result.messages;
 
         setText(text);
-
+        axios.post("http://127.0.0.1:8000/api/v1/userresume", 
+        { 'user_resume': text })
+      .then(res => {
+        console.log(res)
+        console.log(res.data)
+      })
         console.log(text);
       });
   }
@@ -73,8 +80,6 @@ function HomePage() {
     else {
       alert("File type not supported! Please convert to docx format")
     }
-
-
   }
 
   return (
