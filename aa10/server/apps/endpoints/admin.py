@@ -8,10 +8,10 @@ admin.site.site_title = "AA10 Database Admin Area"
 admin.site.index_title = "Welcome to AA10 Database Admin Area!!"
 
 # Register your models here.
-# @admin.register(UserResume)
-# class UserResumeAdmin(ImportExportModelAdmin):
-#     model = UserResume
-#     list_display = ("id", "user_resume",)
+@admin.register(UserResume)
+class UserResumeAdmin(ImportExportModelAdmin):
+    model = UserResume
+    #list_display = ("id", "user_resume",)
 
 @admin.register(BestJobsOutput)
 class BestJobsOutputAdmin(ImportExportModelAdmin):
