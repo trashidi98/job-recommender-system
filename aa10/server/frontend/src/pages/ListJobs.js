@@ -9,12 +9,11 @@ import Axios from "axios";
 function ListJobs() {
 
     const navigate = useNavigate(); 
-
     
     function navigateTo() {
         navigate('/');
-    
     }
+
     return (
         <div className="App">
 

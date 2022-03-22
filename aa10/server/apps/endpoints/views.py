@@ -1,6 +1,8 @@
 # backend/server/apps/endpoints/views.py file
 from rest_framework import viewsets
 from rest_framework import mixins
+from rest_framework import permissions 
+from rest_framework import generics
 import json
 from numpy.random import rand
 from rest_framework import views, status
@@ -31,9 +33,29 @@ def front(request):
     context = { }
     return render(request, "index.html", context)
 
-class UserResumeViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
-    serializer_class = UserResumeSerializer
-    queryset = UserResume.objects.all()
+class UserResumeViewSet(generics.ListCreateAPIView):
+    
+    permission_classes = (permissions.AllowAny,)
+    http_method_names = ['get', 'head', 'post']
+    #def perform_create(self, serializer):
+    def get(self, request, *args, **kwargs):
+        serializer = UserResumeSerializer(UserResume.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):        
+        serializer = self.get_serializer(data=request.data)        
+        serializer.is_valid(raise_exception=True)
+        # Here all incoming data we kept in serializer variable.
+        # Change the data in your way and then pass it inside perform_create()
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+           data={            
+               "resume_text": serializer.data,                
+               },
+               status=status.HTTP_201_CREATED,
+               headers=headers
+           )
 
 class BestJobsOutputViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = BestJobsOutputSerializer
@@ -100,7 +122,6 @@ class PredictView(views.APIView):
 
         algorithm_object = registry.endpoints[algs[alg_index].id]
         prediction = algorithm_object.compute_prediction(request.data)
-
 
         label = prediction["label"] if "label" in prediction else "error"
         ml_request = MLRequest(

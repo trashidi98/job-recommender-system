@@ -1,4 +1,5 @@
 import '../App.css';
+import Cookies from 'js-cookie';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import React, { useState } from 'react';
@@ -19,6 +20,19 @@ function HomePage() {
   const [country, setCountry] = useState("");
   const navigate = useNavigate();
 
+  const csrftoken = Cookies.get('csrftoken') // Cookies from Django Domain
+
+  const loginRequest = async (e) => {
+      await axios({
+          method: "post",
+          url: `http://127.0.0.1:8000/api/v1/userresume`,
+          headers: { 'X-CSRFToken': csrftoken },
+          data: {'resume_text': e}
+      }).then((res) => {
+          console.log(res.data);
+      })
+  }
+
   function navigateTo() {
     navigate('/ListJobs');
   }
@@ -27,19 +41,10 @@ function HomePage() {
     mammoth
       .extractRawText({ arrayBuffer })
       .then(result => {
-
         const text = result.value;
-
         const messages = result.messages;
-
         setText(text);
-        axios.post("http://127.0.0.1:8000/api/v1/userresume", 
-        { 'user_resume': text })
-      .then(res => {
-        console.log(res)
-        console.log(res.data)
-      })
-        console.log(text);
+        loginRequest(result.value)
       });
   }
 
@@ -81,7 +86,7 @@ function HomePage() {
       alert("File type not supported! Please convert to docx format")
     }
   }
-
+  
   return (
     <div className="App">
       <header className="App-header">
