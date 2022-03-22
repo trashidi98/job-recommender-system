@@ -90,25 +90,29 @@ function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
-
-        <h1>Upload Resume and find your most ideal job!</h1>
-
-        <h4>Leverage the power of Machine Learning to Find your best matching job</h4>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={cities}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Cities" />} />
-
-        <Button variant="contained" component="label"> Upload File
-          <input type="file" onChange={(e) => handleFileChange(e.target.files[0])} hidden />
-        </Button>
-
-        <Stack>
-          <Button variant="contained" onClick={navigateTo}> Find Matching Jobs </Button>
-        </Stack>
-
+        <h2>Leverage the power of ML and your resume to find your most ideal job!</h2>
+      
+        {/* <h4>Leverage the power of machine learning recommender systems to find the best matching jobs</h4> */}
+          <h5> 1. Filter by a city. (Optional) 
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              variant="contained"
+              options={cities}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Cities" />} /> 
+          </h5>
+          
+          <h5>2. Upload your resume in .docx format. <br></br>
+            <Button variant="contained" component="label" style={{height: '50px', width : '300px'}}>
+              Upload File (.docx)
+              <input type="file" onChange={(e) => handleFileChange(e.target.files[0])} hidden />
+            </Button>
+          </h5>
+          
+          <h5>3. Discover your most ideal jobs!<br></br>
+            <Button variant="contained" component="label" onClick={navigateTo} style={{height: '50px', width : '300px'}}> Find Matching Jobs </Button>
+          </h5>
       </header>
     </div>
   );
