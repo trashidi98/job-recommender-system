@@ -44,37 +44,3 @@ function OutlinedCard({jobTitle, company, score}) {
 }
 
 export default OutlinedCard; 
-
-// const card = (
-//   <React.Fragment>
-    
-//     <CardContent>
-
-//     <Stack direction="row" spacing={110}>
-        
-//         <div>
-//           <h4>Job Title</h4>
-//         </div>
-
-//         <div>
-//           <h4>Company</h4>
-//         </div>
-
-//         <div>
-//           <h4>Percentage</h4>
-//         </div>
-
-//       </Stack>
-
-//     </CardContent>
-    
-//   </React.Fragment>
-// );
-
-// export default function OutlinedCard() {
-//   return (
-//     <Box sx={{ minWidth: 1000 }}>
-//       <Card variant="outlined">{card}</Card>
-//     </Box>
-//   );
-// }
