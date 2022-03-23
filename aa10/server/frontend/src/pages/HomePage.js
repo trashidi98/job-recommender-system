@@ -91,9 +91,7 @@ function HomePage() {
     <div className="App">
       <header className="App-header">
         <h2>Leverage the power of ML and your resume to find your most ideal job!</h2>
-      
-        {/* <h4>Leverage the power of machine learning recommender systems to find the best matching jobs</h4> */}
-          <h5> 1. Filter by a city. (Optional) 
+            <h5> 1. Filter by a city. (Optional) 
             <Autocomplete
               disablePortal
               id="combo-box-demo"

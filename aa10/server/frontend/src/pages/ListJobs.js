@@ -2,9 +2,9 @@ import '../App.css';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import React, { useState } from 'react';
-import mammoth from "mammoth/mammoth.browser";
 import {useNavigate} from "react-router-dom"; 
-import Axios from "axios";
+import OutlinedCard from '../components/OutlinedCard'; 
+
 
 function ListJobs() {
 
@@ -15,17 +15,17 @@ function ListJobs() {
     }
 
     return (
-        <div className="App">
-
-        <h1>List Jobs Page</h1>
+        <div>
         
-        <Stack spacing={60} direction="row">
-            
-            <Button variant="contained">Button</Button>        
+            <div className="list-jobs">
+                <h1>Recommended Jobs</h1>
+            </div>
 
-            <Button variant="contained" onClick={navigateTo}> Go Back </Button>
-        </Stack>
+            <div className="list-jobs">
+                <OutlinedCard jobTitle={"Software Dev"} company={"SHAHBAZ"} score={"10"}></OutlinedCard>
+            </div> 
         </div>
+
   );
 }
 
