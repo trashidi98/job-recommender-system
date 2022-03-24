@@ -10,18 +10,16 @@ import './OutlinedCard.css'
 
 
 
-function OutlinedCard({jobTitle, company, score}) {
+function OutlinedCard({ jobTitle, company, score }) {
 
   return (
-     
-     <Box sx={{ minWidth: 1000 }}>
 
-     <Card variant="outlined">
-     
-      <CardContent>
+    <Box sx={{ minWidth: 1000 }}>
 
-        <Stack direction="row" spacing={110}>
-            
+      <Card variant="outlined">
+
+        <CardContent>
+          <div className='inside-card'>
             <div>
               <h4>{jobTitle}</h4>
             </div>
@@ -33,14 +31,14 @@ function OutlinedCard({jobTitle, company, score}) {
             <div>
               <h4>{score}</h4>
             </div>
+          </div>
+        </CardContent>
 
-        </Stack>
+      </Card>
 
-      </CardContent>
-     </Card>
     </Box>
 
-  ); 
+  );
 }
 
 export default OutlinedCard; 
