@@ -1,7 +1,7 @@
 import '../App.css';
+import './HomePage.css';
 import Cookies from 'js-cookie';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import React, { useState } from 'react';
 import mammoth from "mammoth/mammoth.browser";
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +18,7 @@ function HomePage() {
   const [wholeText, setText] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+
   const navigate = useNavigate();
 
   const csrftoken = Cookies.get('csrftoken') // Cookies from Django Domain
@@ -34,7 +35,7 @@ function HomePage() {
   }
 
   function navigateTo() {
-    navigate('/ListJobs');
+    navigate('/Loading');
   }
 
   function extractTextFromDocx(arrayBuffer) {
@@ -90,29 +91,33 @@ function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Leverage the power of ML and your resume to find your most ideal job!</h2>
-      
-        {/* <h4>Leverage the power of machine learning recommender systems to find the best matching jobs</h4> */}
-          <h5> 1. Filter by a city. (Optional) 
+
+        <div className="HomePage">
+          <h2>Leverage the power of ML to find your tech job</h2>
+            
+            <h5> 1. Filter by a city. (Optional) <br></br>              
+            </h5>
+
             <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              variant="contained"
-              options={cities}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Cities" />} /> 
-          </h5>
-          
-          <h5>2. Upload your resume in .docx format. <br></br>
-            <Button variant="contained" component="label" style={{height: '50px', width : '300px'}}>
-              Upload File (.docx)
-              <input type="file" onChange={(e) => handleFileChange(e.target.files[0])} hidden />
-            </Button>
-          </h5>
-          
-          <h5>3. Discover your most ideal jobs!<br></br>
-            <Button variant="contained" component="label" onClick={navigateTo} style={{height: '50px', width : '300px'}}> Find Matching Jobs </Button>
-          </h5>
+                disablePortal
+                id="combo-box-demo"
+                options={cities}
+                variant="contained"
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="Cities" />} />
+
+            <h5>2. Upload your resume in .docx format. <br></br>
+              <Button variant="contained" component="label" style={{height: '50px', width : '300px'}}>
+                Upload File (.docx)
+                <input type="file" onChange={(e) => handleFileChange(e.target.files[0])} hidden />
+              </Button>
+            </h5>
+            
+            <h5>3. Discover your most ideal jobs<br></br>
+              <Button variant="contained" component="label" onClick={navigateTo} style={{height: '50px', width : '300px'}}> Find Matching Jobs </Button>
+            </h5>
+
+          </div>
       </header>
     </div>
   );
