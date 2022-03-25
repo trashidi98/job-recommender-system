@@ -3,29 +3,15 @@ from rest_framework import serializers
 from apps.endpoints.models import Endpoint
 from apps.endpoints.models import MLAlgorithm
 from apps.endpoints.models import MLAlgorithmStatus
-from apps.endpoints.models import MLRequest
-from apps.endpoints.models import BestJobsOutput
 from apps.endpoints.models import UserResume
-
 
 class UserResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserResume
-        #read_only_fields = ("resume_text")
         fields = ("resume_text", )
         def create(self, validated_data):
-            my_incoming_data = validated_data
-            # If you want to pop any field from the incoming data then you can like below.
-            # popped_data = validated_data.pop('timeFrames')
             inserted_data = UserResume.objects.create(**validated_data)
             return Response(inserted_data)
-
-
-class BestJobsOutputSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = BestJobsOutput
-        read_only_fields = ("job_id", "job_title", "job_category", "company_name", "inferred_city", "inferred_state", "inferred_country", "job_description", "job_type")
-        fields = ("job_id", "job_title", "job_category", "company_name", "inferred_city", "inferred_state", "inferred_country", "job_description", "job_type", "similarity_score")
 
 class EndpointSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,9 +33,3 @@ class MLAlgorithmStatusSerializer(serializers.ModelSerializer):
         model = MLAlgorithmStatus
         read_only_fields = ("id", "active")
         fields = ("id", "active", "status", "created_by", "created_at","parent_mlalgorithm")
-
-class MLRequestSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MLRequest
-        read_only_fields = ("id","input_data","full_response","response","created_at","parent_mlalgorithm")
-        fields =  ("id","input_data","full_response","response","feedback","created_at","parent_mlalgorithm",)

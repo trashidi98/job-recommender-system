@@ -1,23 +1,9 @@
 from unicodedata import category
+from urllib import response
 from django.db import models
 
 class UserResume(models.Model):
     resume_text = models.CharField(max_length=50000, blank=True, null=True)
-
-class BestJobsOutput(models.Model):
-    '''
-    The final dataframe of top 10 jobs that will be sent to the user.
-    '''
-    job_id = models.IntegerField(blank=True, null=True)
-    job_title = models.CharField(max_length=10000)
-    job_category = models.CharField(max_length=10000, blank=True, null=True)
-    company_name = models.CharField(max_length=10000, blank=True, null=True)
-    inferred_city = models.CharField(max_length=10000, blank=True, null=True)
-    inferred_state = models.CharField(max_length=10000, blank=True, null=True)
-    inferred_country = models.CharField(max_length=10000, blank=True, null=True)
-    job_description = models.CharField(max_length=10000)
-    job_type = models.CharField(max_length=10000, blank=True, null=True)
-    similarity_score = models.IntegerField()
 
 class Endpoint(models.Model):
     '''
@@ -70,23 +56,4 @@ class MLAlgorithmStatus(models.Model):
     created_by = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE, related_name = "status")
-
-class MLRequest(models.Model):
-    '''
-    The MLRequest will keep information about all requests to ML algorithms.
-
-    Attributes:
-        input_data: The input data to ML algorithm in JSON format.
-        full_response: The response of the ML algorithm.
-        response: The response of the ML algorithm in JSON format.
-        feedback: The feedback about the response in JSON format.
-        created_at: The date when request was created.
-        parent_mlalgorithm: The reference to MLAlgorithm used to compute response.
-    '''
-    input_data = models.CharField(max_length=10000)
-    full_response = models.CharField(max_length=10000)
-    response = models.CharField(max_length=10000)
-    feedback = models.CharField(max_length=10000, blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, blank=True)
-    parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE)
 
