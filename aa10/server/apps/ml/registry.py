@@ -1,10 +1,9 @@
 from apps.endpoints.models import Endpoint
 from apps.endpoints.models import MLAlgorithm
 from apps.endpoints.models import MLAlgorithmStatus
-from apps.endpoints.models import BestJobsOutput
-from apps.endpoints.models import MLRequest
 
 class MLRegistry:
+
     def __init__(self):
         self.endpoints = {}
 
@@ -31,5 +30,3 @@ class MLRegistry:
 
         # add to registry
         self.endpoints[database_object.id] = algorithm_object
-
-# Add model.MLRequest to regisrty to get the response

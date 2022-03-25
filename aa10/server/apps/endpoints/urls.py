@@ -5,10 +5,8 @@ from rest_framework.routers import DefaultRouter
 from apps.endpoints.views import EndpointViewSet
 from apps.endpoints.views import MLAlgorithmViewSet
 from apps.endpoints.views import MLAlgorithmStatusViewSet
-from apps.endpoints.views import MLRequestViewSet
-from apps.endpoints.views import PredictView # import PredictView
-from apps.endpoints.views import BestJobsOutputViewSet
 from apps.endpoints.views import UserResumeViewSet
+
 from apps.endpoints.models import UserResume
 from apps.endpoints.serializers import UserResumeSerializer
 
@@ -16,12 +14,9 @@ router = DefaultRouter(trailing_slash=False)
 router.register("endpoints", EndpointViewSet, basename="endpoints")
 router.register("mlalgorithms", MLAlgorithmViewSet, basename="mlalgorithms")
 router.register("mlalgorithmstatuses", MLAlgorithmStatusViewSet, basename="mlalgorithmstatuses")
-router.register("mlrequests", MLRequestViewSet, basename="mlrequests")
-router.register("bestjobs", BestJobsOutputViewSet, basename="bestjobs")
 
 urlpatterns = [
     
     url("api/v1/userresume", UserResumeViewSet.as_view(queryset = UserResume.objects.all(), serializer_class = UserResumeSerializer), name='userresume'),
-    url("predict", PredictView.as_view(), name="predict"),
     url("api/v1/", include(router.urls)),
 ]
