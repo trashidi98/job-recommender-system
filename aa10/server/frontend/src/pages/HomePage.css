@@ -1,0 +1,10 @@
+.HomePage {
+    color: white; 
+    margin-left: auto; 
+    margin-right: auto;
+    justify-content: center;
+}
+
+.centre {
+    justify-content: center;
+}
