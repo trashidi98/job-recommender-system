@@ -34,11 +34,13 @@ class UserResumeViewSet(generics.ListCreateAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):        
-        serializer = self.get_serializer(data=request.data)        
+        serializer = self.get_serializer(data=request.data)   
+        prediction = bestjobs_computations(request.data["resume_text"], request.data["city"]) 
         serializer.is_valid(raise_exception=True)
+        serializer.validated_data
+        print(serializer.validated_data)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        prediction = bestjobs_computations(serializer.data)
         return Response(prediction, status=status.HTTP_201_CREATED, headers=headers)
         
 class EndpointViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):

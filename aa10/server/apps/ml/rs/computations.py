@@ -101,7 +101,7 @@ def Sort_Tuple(tup):
     tup.sort(key = lambda x: x[1], reverse = True) 
     return tup 
 
-def bestjobs_computations(resume):
+def bestjobs_computations(resume, city):
 
     with open('/home/rasperrylinux/capstone/job-recommender-system/aa10/server/apps/ml/rs/model', 'rb') as f:
         lda_model = pickle.load(f)
@@ -121,19 +121,17 @@ def bestjobs_computations(resume):
 
     resume_topics = (Sort_Tuple(resume_topics[0])) 
     
-    # city, citycount = np.unique(list(jobs.loc[:, "inferred_city"]), return_counts = True)
-    # state, statecount  = np.unique(list(jobs.loc[:, "inferred_state"]), return_counts = True)
-    # country, countrycount = np.unique(list(jobs.loc[:, "inferred_country"]), return_counts = True)
+    cityList, citycount = np.unique(list(jobs.loc[:, "inferred_city"]), return_counts = True)
 
-    # cities_dict = dict(zip(city, citycount))
+    cities_dict = dict(zip(cityList, citycount))
     
-    # city_entered = city_input
-    # for key,val in cities_dict.items():
-    #     if key.lower() == city_entered.lower():
-    new_corpus  = jobs
+    city_entered = city
+    for key,val in cities_dict.items():
+        if key.lower() == city_entered.lower():
+            new_corpus  = jobs[jobs["inferred_city"] == key]
 
-    # if new_corpus.shape[0] < 5:
-    #     print("Not enough data for this location.")
+    if new_corpus.shape[0] < 5:
+        print("Not enough data for this location.")
         
     for i in range (len(new_corpus)):
         new_corpus.iloc[i]['Topics'] = Sort_Tuple(new_corpus.iloc[i]['Topics'])
