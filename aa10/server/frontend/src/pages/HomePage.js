@@ -16,19 +16,22 @@ function HomePage() {
   const [file, setSelectedFile] = useState("");
   const [title, setTitle] = useState("");
   const [wholeText, setText] = useState("");
-  const [city, setCity] = useState("");
+  var city = ""; 
   const [country, setCountry] = useState("");
 
   const navigate = useNavigate();
 
   const csrftoken = Cookies.get('csrftoken') // Cookies from Django Domain
 
-  const loginRequest = async (e) => {
+  const loginRequest = async (resume_text, city) => {
       await axios({
           method: "post",
           url: `http://127.0.0.1:8000/api/v1/userresume`,
           headers: { 'X-CSRFToken': csrftoken },
-          data: {'resume_text': e}
+          data: {
+            'resume_text': resume_text,
+            'city': city
+          }
       }).then((res) => {
           console.log(res.data);
       })
@@ -45,7 +48,7 @@ function HomePage() {
         const text = result.value;
         const messages = result.messages;
         setText(text);
-        loginRequest(result.value)
+        loginRequest(result.value, city)
       });
   }
 
@@ -62,6 +65,11 @@ function HomePage() {
       return false;
     }
 
+  }
+
+  function handleCityChange(thisCity) {
+    city = thisCity;
+    console.log(city); 
   }
 
   function handleFileChange(file) {
@@ -104,7 +112,8 @@ function HomePage() {
                 options={cities}
                 variant="contained"
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Cities" />} />
+                onChange={ (event, value) => { handleCityChange(value.label) }} 
+                renderInput={(params) => <TextField {...params} label="Cities"/>} />
 
             <h5>2. Upload your resume in .docx format. <br></br>
               <Button variant="contained" component="label" style={{height: '50px', width : '300px'}}>

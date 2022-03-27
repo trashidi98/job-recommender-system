@@ -8,7 +8,7 @@ from apps.endpoints.models import UserResume
 class UserResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserResume
-        fields = ("resume_text", )
+        fields = ("resume_text", "city")
         def create(self, validated_data):
             inserted_data = UserResume.objects.create(**validated_data)
             return Response(inserted_data)
