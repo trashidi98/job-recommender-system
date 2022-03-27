@@ -4,6 +4,7 @@ from django.db import models
 
 class UserResume(models.Model):
     resume_text = models.CharField(max_length=50000, blank=True, null=True)
+    city = models.CharField(max_length=50000, blank=True, null=True)
 
 class Endpoint(models.Model):
     '''
