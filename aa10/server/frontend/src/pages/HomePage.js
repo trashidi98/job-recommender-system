@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextInput from 'react-autocomplete-input';
+import Particles from "react-tsparticles";
+
 
 import { cities } from '../data/cities';
 import axios from 'axios'; 
@@ -101,6 +103,40 @@ function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
+         
+      <Particles params={{
+      fpsLimit: 30,
+      particles: {
+        color: {
+          value: "#9400D3"
+        },
+        links: {
+          enable: true,
+          color: "#9c4be7",
+          distance: 125
+        },
+        move: {
+          enable: true
+        }
+      }
+    }}/>      
+  <div style={{
+      position: "absolute",
+      fpsLimit: 30,
+      particles: {
+        color: {
+          value: "#9400D3"
+        },
+        links: {
+          enable: true,
+          color: "#9c4be7",
+          distance: 125
+        },
+        move: {
+          enable: true
+        }
+      }
+  }}>
 
         <div className="HomePage">
           <h2>Leverage the power of ML to find your tech job</h2>
@@ -127,6 +163,8 @@ function HomePage() {
               <Button variant="contained" component="label" onClick={navigateTo} style={{height: '50px', width : '300px'}}> Find Matching Jobs </Button>
             </h5>
 
+          </div>
+          
           </div>
       </header>
     </div>

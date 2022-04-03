@@ -9,6 +9,8 @@ import Axios from "axios";
 import OutlinedCard from '../components/OutlinedCard';
 import OutlineContainer from '../components/OutlineContainer';
 import CountUp from 'react-countup';
+import Particles from "react-tsparticles";
+
 
 function zip(arrays) {
     return arrays[0].map(function(_,i){
@@ -63,20 +65,45 @@ function ListJobs() {
     }
 
     return (
-            <div className="list-jobs-main">
-                <h1>List Jobs Page</h1>
-                    
-                <Button variant="contained">Button</Button>        
-                <Button variant="contained" onClick={navigateTo}> Go Back </Button>
-                    
-                <div className="list-jobs">
-                    <h1>Recommended Jobs</h1>
-                </div>
+  
+    <div className="list-jobs-main">
 
-                <div className="list-jobs">
-                    <OutlineContainer jobsList={processedResults}></OutlineContainer>
-                </div>
-            </div>
+<Particles params={{
+      fpsLimit: 30,
+      particles: {
+        color: {
+          value: "#9400D3"
+        },
+        links: {
+          enable: true,
+          color: "#9c4be7",
+          distance: 125
+        },
+        move: {
+          enable: true
+        }
+      }
+    }}/>      
+  <div style={{
+      position: "absolute",
+  }}>
+
+  <div className="list-jobs-main">
+        
+        <div className="list-jobs">
+            <h1>Recommended Jobs</h1>
+        </div>
+
+        <div>
+        <Button variant="contained" color="secondary" onClick={navigateTo}> Go Back </Button>
+        </div>
+
+        <div className="list-jobs">
+            <OutlineContainer jobsList={processedResults}></OutlineContainer>
+        </div>
+        </div>
+    </div>
+  </div>
 
   );
 }

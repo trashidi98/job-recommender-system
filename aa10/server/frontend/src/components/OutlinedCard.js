@@ -17,7 +17,7 @@ function OutlinedCard({ jobTitle, company, score }) {
 
     <Box sx={{ minWidth: 1000 }}>
       <div className="card-outline">
-      <Card variant="outlined" style={{backgroundColor: 'rgba(198, 0, 198, 0.7)'} }>
+      <Card variant="outlined" style={{backgroundColor: 'rgba(148, 0, 211, 0.7)'} }>
 
         <CardContent>
           <div className='inside-card'>
