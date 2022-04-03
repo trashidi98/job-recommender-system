@@ -6,15 +6,18 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CountUp from 'react-countup';
 import './OutlinedCard.css'
+
 
 function OutlinedCard({ jobTitle, company, score }) {
 
+  
   return (
 
     <Box sx={{ minWidth: 1000 }}>
-
-      <Card variant="outlined" style={{backgroundColor: 'rgba(125, 82, 255, 0.7)'}}>
+      <div className="card-outline">
+      <Card variant="outlined" style={{backgroundColor: 'rgba(198, 0, 198, 0.7)'} }>
 
         <CardContent>
           <div className='inside-card'>
@@ -27,14 +30,13 @@ function OutlinedCard({ jobTitle, company, score }) {
             </div>
 
             <div>
-              <h4>{score}</h4>
+              <CountUp end={score} useEasing={true} duration={4}/>
             </div>
             
           </div>
         </CardContent>
-
       </Card>
-
+      </div>
     </Box>
 
   );

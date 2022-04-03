@@ -5,3 +5,13 @@
     flex-wrap: wrap;
     font-size: calc(8.5px + 2vmin);  
   }
+
+
+  .card-outline {
+    transition: transform .4s; /* Animation */
+    margin: 0 auto;
+  }
+  
+  .card-outline:hover {
+    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }

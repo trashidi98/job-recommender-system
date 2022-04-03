@@ -7,6 +7,8 @@ import mammoth from "mammoth/mammoth.browser";
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import TextInput from 'react-autocomplete-input';
+
 import { cities } from '../data/cities';
 import axios from 'axios'; 
 axios.defaults.withCredentials = true;
@@ -111,7 +113,6 @@ function HomePage() {
                 id="combo-box-demo"
                 options={cities}
                 variant="contained"
-                sx={{ width: 300 }}
                 onChange={ (event, value) => { handleCityChange(value.label) }} 
                 renderInput={(params) => <TextField {...params} label="Cities"/>} />
 
