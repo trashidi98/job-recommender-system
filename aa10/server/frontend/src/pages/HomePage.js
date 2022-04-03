@@ -15,8 +15,9 @@ function HomePage() {
 
   const [file, setSelectedFile] = useState("");
   const [title, setTitle] = useState("");
-  const [wholeText, setText] = useState("");
-  var city = ""; 
+  const [wholeText, setText] = useState(""); 
+  const [backendData, setBackendData] = useState(""); 
+  var city = "";
 
   const navigate = useNavigate();
 
@@ -32,12 +33,13 @@ function HomePage() {
             'city': city
           }
       }).then((res) => {
+          setBackendData(res.data); 
           console.log(res.data);
       })
   }
 
   function navigateTo() {
-    navigate('/Loading');
+    navigate('/ListJobs', {state: backendData});
   }
 
   function extractTextFromDocx(arrayBuffer) {

@@ -1,70 +1,3 @@
-import '../App.css';
-import './ListJobs.css'
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import React, { useState } from 'react';
-import mammoth from "mammoth/mammoth.browser";
-import {useNavigate, useLocation} from "react-router-dom"; 
-import Axios from "axios";
-import OutlinedCard from '../components/OutlinedCard';
-import OutlineContainer from '../components/OutlineContainer';
-
-// const jobsFullList = {
-//     "jobs": [
-//         {
-//             "jobtitle": "JOB_TITLE1",
-//             "company": "COMPANY1",
-//             "similarityscore": "93%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE2",
-//             "company": "COMPANY2",
-//             "similarityscore": "93%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE3",
-//             "company": "COMPANY3",
-//             "similarityscore": "89%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE4",
-//             "company": "COMPANY4",
-//             "similarityscore": "87%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE5",
-//             "company": "COMPANY5",
-//             "similarityscore": "86%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE6",
-//             "company": "COMPANY6",
-//             "similarityscore": "85%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE7",
-//             "company": "COMPANY7",
-//             "similarityscore": "85%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE8",
-//             "company": "COMPANY8",
-//             "similarityscore": "83%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE9",
-//             "company": "COMPANY9",
-//             "similarityscore": "82%"
-//         },
-//         {
-//             "jobtitle": "JOB_TITLE10",
-//             "company": "COMPANY10",
-//             "similarityscore": "70%"
-//         }
-
-//     ]
-// }
-
 const jobsObject = {
     "Unnamed: 0": [
       2221,
@@ -282,6 +215,8 @@ const jobsObject = {
     ]
   }; 
 
+
+
 function zip(arrays) {
     return arrays[0].map(function(_,i){
         return arrays.map(function(array){return array[i]})
@@ -299,15 +234,15 @@ function createJobObject(zippedArray) {
     return object; 
 }
 
-function processResults(backendObject) {
+function processResults(object) {
 
     var fullJobsArray = []; 
 
-    let jobTitlesArr = backendObject["job_title"]; 
+    let jobTitlesArr = object["job_title"]; 
 
-    let companyArr = backendObject["company_name"]; 
+    let companyArr = object["company_name"]; 
 
-    let similarityArr = backendObject["Similarity"]; 
+    let similarityArr = object["Similarity"]; 
 
     let zippedArrays = zip([jobTitlesArr, companyArr, similarityArr])
 
@@ -320,37 +255,10 @@ function processResults(backendObject) {
 }
 
 
-function ListJobs() {
-
-    var location = useLocation(); 
-
-    const navigate = useNavigate(); 
-
-    let backendData = location.state; 
-
-    let processedResults = processResults(backendData); 
+function main() {
+    let results = processResults(jobsObject); 
     
-    function navigateTo() {
-        navigate('/');
-    }
-
-    return (
-            <div className="list-jobs-main">
-                <h1>List Jobs Page</h1>
-                    
-                <Button variant="contained">Button</Button>        
-                <Button variant="contained" onClick={navigateTo}> Go Back </Button>
-                    
-                <div className="list-jobs">
-                    <h1>Recommended Jobs</h1>
-                </div>
-
-                <div className="list-jobs">
-                    <OutlineContainer jobsList={processedResults}></OutlineContainer>
-                </div>
-            </div>
-
-  );
+    console.log(results); 
 }
 
-export default ListJobs;
+main(); 

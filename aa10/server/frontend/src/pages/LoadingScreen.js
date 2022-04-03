@@ -26,10 +26,12 @@ function LoadingScreen() {
 
     return (
         <div className="App">
-            <Lottie
-            options={defaultOptions}
-            height={600}
-            width={600}/>
+            <header className="App-header">
+                <Lottie
+                options={defaultOptions}
+                height={600}
+                width={600}/>
+            </header>
         </div>
 
     );
