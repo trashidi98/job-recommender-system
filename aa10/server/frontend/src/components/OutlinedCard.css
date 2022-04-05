@@ -15,3 +15,8 @@
   .card-outline:hover {
     transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+
+
+  .countup {
+    padding: 35px 7px 0px 0px
+  }

@@ -29,7 +29,7 @@ function OutlinedCard({ jobTitle, company, score }) {
               <h4>{company}</h4>
             </div>
 
-            <div>
+            <div className="countup">
               <CountUp end={score} useEasing={true} duration={4}/>
             </div>
             
