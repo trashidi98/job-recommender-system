@@ -1,0 +1,15 @@
+.OutlineContainer {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 40px;
+    flex-direction: column;
+
+    font-family: 'Kanit', sans-serif;
+
+    min-height: 90vh;
+    font-size: calc(10px + 2vmin);
+    color: black;
+}
+  
+
+

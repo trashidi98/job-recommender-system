@@ -1,0 +1,11 @@
+.description-header {
+    text-align: center;     
+}
+
+.description-body {
+    width: 80%;
+    margin: auto;
+    padding: 5px 30px 10px 30px;
+    position: relative;
+    background-color: rgba(148, 0, 211, 0.7)
+}
