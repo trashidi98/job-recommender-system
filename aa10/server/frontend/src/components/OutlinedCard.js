@@ -63,14 +63,13 @@ function OutlinedCard({ jobTitle, company, score, description }) {
             </div>
 
             <CardActions>
-            <Button
-                style={{
+            <Button variant="contained" component="label" onClick={navigateForward} style={{
                     borderRadius: 12,
-                    backgroundColor: "#9200D1",
-                    fontSize: "calc(1px + 2vmin)"
-                }}
-                variant="contained"
-                onClick={navigateForward}>
+                    backgroundColor: "rgba(148, 0, 211, 0.9)",
+                    height: '35px', 
+                    width : '150px',
+                    fontFamily: 'Kanit', 
+                }} sx={{color: 'black'}}>
                 Description
             </Button>
             </CardActions>     

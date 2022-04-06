@@ -8,12 +8,24 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextInput from 'react-autocomplete-input';
+import { MuiThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Particles from "react-tsparticles";
 
 
 import { cities } from '../data/cities';
 import axios from 'axios'; 
 axios.defaults.withCredentials = true;
+
+
+const theme = createTheme({
+  palette: {
+    text: {
+      primary: '#9200D1',
+      secondary: '#9200D1',
+    },
+  },
+});
+
 
 function HomePage() {
 
@@ -141,28 +153,50 @@ function HomePage() {
         <div className="HomePage">
           <h2>Leverage the power of ML to find your tech job</h2>
             
-            <h5> 1. Filter by a city. (Optional) <br></br>              
+            <h5> 1. Filter by a city <br></br>              
             </h5>
-
+            <div className='white-text'>
             <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={cities}
+                sx={{backgroundColor: 'rgba(148, 0, 211, 0.7)', borderRadius: '10px',
+                '& label.Mui-focused': {
+                  color: 'white',
+                },
+                '& .MuiInput-underline:after': {
+                  borderBottomColor: 'white',
+                },
+                '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                  '& fieldset': {
+                    borderColor: 'black',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                }
+                }}
                 variant="contained"
                 onChange={ (event, value) => { handleCityChange(value.label) }} 
                 renderInput={(params) => <TextField {...params} label="Cities"/>} />
-
+            </div>
             <h5>2. Upload your resume in .docx format. <br></br>
-              <Button variant="contained" component="label" style={{height: '50px', width : '300px'}}>
+              <Button variant="contained" component="label" style={{ borderRadius: 12, backgroundColor: "rgba(148, 0, 211, 0.9)", height: '70px', width : '400px'}}>
                 Upload File (.docx)
                 <input type="file" onChange={(e) => handleFileChange(e.target.files[0])} hidden />
               </Button>
             </h5>
             
             <h5>3. Discover your most ideal jobs<br></br>
-              <Button variant="contained" component="label" onClick={navigateTo} style={{height: '50px', width : '300px'}}> Find Matching Jobs </Button>
+            <Button variant="contained" component="label" onClick={navigateTo} style={{
+                    borderRadius: 12,
+                    backgroundColor: "rgba(148, 0, 211, 0.9)",
+                    height: '70px', 
+                    width : '400px'
+                }}> Find Matching Jobs 
+            </Button>
             </h5>
-
           </div>
           
           </div>
