@@ -24,7 +24,8 @@ function createJobObject(zippedArray) {
 
     object["jobtitle"] = zippedArray[0];
     object["company"] = zippedArray[1];
-    object["similarity"] = zippedArray[2];     
+    object["similarity"] = zippedArray[2]; 
+    object["description"] = zippedArray[3];    
 
     return object; 
 }
@@ -39,7 +40,9 @@ function processResults(backendObject) {
 
     let similarityArr = backendObject["Similarity"]; 
 
-    let zippedArrays = zip([jobTitlesArr, companyArr, similarityArr])
+    let jobDescriptionArr = backendObject["job_description"];
+
+  let zippedArrays = zip([jobTitlesArr, companyArr, similarityArr, jobDescriptionArr])
 
     for(let i = 0; i < jobTitlesArr.length; i++ ) {
         fullJobsArray.push(createJobObject(zippedArrays[i]));  
@@ -60,7 +63,7 @@ function ListJobs() {
 
     let processedResults = processResults(backendData); 
     
-    function navigateTo() {
+    function navigateBack() {
         navigate('/');
     }
 
@@ -95,7 +98,7 @@ function ListJobs() {
         </div>
 
         <div>
-        <Button variant="contained" color="secondary" onClick={navigateTo}> Go Back </Button>
+        <Button variant="contained" color="secondary" onClick={navigateBack}> Go Back </Button>
         </div>
 
         <div className="list-jobs">

@@ -15,12 +15,26 @@ function changeName(company) {
   }
 }
 
+function changeJobTitle(jobtitle) {
+
+  let rantitles = ["Software Developer", "Software Engineer", "Data Scientist", "Data Engineer", "Data Analyst", "Developer", "Engineer"]
+
+  if (jobtitle.length > 25) {
+    return jobtitle = rantitles[Math.floor(Math.random() * rantitles.length)];
+  }
+
+  else {
+    return jobtitle;
+  }
+}
+
 function OutlineContainer({ jobsList }) {
+
   return (
     <div className='OutlineContainer'>
         {
             jobsList.map((job) => {
-            return <OutlinedCard jobTitle={job.jobtitle} company={changeName(job.company)} score={job.similarity} />
+              return <OutlinedCard jobTitle={changeJobTitle(job.jobtitle)} company={changeName(job.company)} score={job.similarity} description={job.description} />
             })
         }
     </div>
