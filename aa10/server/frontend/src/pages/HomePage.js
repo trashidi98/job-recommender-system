@@ -2,6 +2,7 @@ import '../App.css';
 import './HomePage.css';
 import Cookies from 'js-cookie';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import React, { useState } from 'react';
 import mammoth from "mammoth/mammoth.browser";
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +33,8 @@ function HomePage() {
   const [file, setSelectedFile] = useState("");
   const [title, setTitle] = useState("");
   const [wholeText, setText] = useState(""); 
-  const [backendData, setBackendData] = useState(""); 
+  const [backendData, setBackendData] = useState("");
+  const [gotBackendData, setLoading] = useState(false);  
   var city = "";
 
   const navigate = useNavigate();
@@ -62,8 +64,10 @@ function HomePage() {
     mammoth
       .extractRawText({ arrayBuffer })
       .then(result => {
+        setLoading(true)
         const text = result.value;
         setText(text);
+        setLoading(false)
         loginRequest(result.value, city)
       });
   }
