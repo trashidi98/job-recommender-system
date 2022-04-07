@@ -11,17 +11,18 @@ import CountUp from 'react-countup';
 import Particles from "react-tsparticles";
 import './JobDescription.css'
 import DescriptionContainer from '../components/DescriptionContainer';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import { IconButton } from '@mui/material';
 
 
 
 function JobDescription() {
 
     var location = useLocation(); 
-
     const navigate = useNavigate(); 
 
-    function navigateTo() {
-        navigate('/');
+    function navigateBack() {
+      navigate('/ListJobs', {state: true});
     }
 
     return (
@@ -43,6 +44,12 @@ function JobDescription() {
                 }
               }
             }}/>
+
+          {/* <div className="back-button">
+            <IconButton color="secondary" size='large' onClick={navigateBack}>
+              <ArrowCircleLeftOutlinedIcon sx={{fontSize: '65px'}}/>
+            </IconButton>
+          </div> */}
                         
             <div className="job-description-body">
                 <DescriptionContainer/>

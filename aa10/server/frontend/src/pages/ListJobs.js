@@ -10,6 +10,8 @@ import OutlinedCard from '../components/OutlinedCard';
 import OutlineContainer from '../components/OutlineContainer';
 import CountUp from 'react-countup';
 import Particles from "react-tsparticles";
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import { IconButton } from '@mui/material';
 
 
 function zip(arrays) {
@@ -60,7 +62,7 @@ function ListJobs() {
     const navigate = useNavigate(); 
 
     let backendData = location.state; 
-
+    
     let processedResults = processResults(backendData); 
     
     function navigateBack() {
@@ -91,14 +93,18 @@ function ListJobs() {
       position: "absolute",
   }}>
 
+    
+
   <div className="list-jobs-main">
-        
+
+      <div className="back-button">
+        <IconButton color="secondary" size='large' onClick={navigateBack}>
+          <ArrowCircleLeftOutlinedIcon sx={{fontSize: '65px'}}/>
+        </IconButton>
+      </div>
+    
         <div className="list-jobs">
             <h1>Recommended Jobs</h1>
-        </div>
-
-        <div>
-        <Button variant="contained" color="secondary" onClick={navigateBack}> Go Back </Button>
         </div>
 
         <div className="list-jobs">
