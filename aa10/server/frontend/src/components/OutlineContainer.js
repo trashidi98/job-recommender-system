@@ -4,7 +4,7 @@ import OutlinedCard from './OutlinedCard';
   
 function changeName(company) {
 
-  let rancompanies = ["Dropper", "Connecting Services", "Looper", "StackAssist", "Gamification", "Integrate Inc", "Tata Consultancy", "Honeymade Devices", "AdaFruit Inc", "Ansys Co."]
+  let rancompanies = ["Integrate Inc"]
 
   if(company.length > 25) {
     return company = rancompanies[Math.floor(Math.random() * rancompanies.length)];
@@ -17,9 +17,9 @@ function changeName(company) {
 
 function changeJobTitle(jobtitle) {
 
-  let rantitles = ["Software Developer", "Software Engineer", "Data Scientist", "Data Engineer", "Data Analyst", "Developer", "Engineer"]
+  let rantitles = ["Software Developer", "Software Engineer"]
 
-  if (jobtitle.length > 25) {
+  if (jobtitle.length > 35) {
     return jobtitle = rantitles[Math.floor(Math.random() * rantitles.length)];
   }
 
