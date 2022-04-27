@@ -103,10 +103,10 @@ def Sort_Tuple(tup):
 
 def bestjobs_computations(resume, city):
 
-    with open('/home/rasperrylinux/capstone/job-recommender-system/aa10/server/apps/ml/rs/model', 'rb') as f:
+    with open('/Users/saimamunir/Desktop/job-recommender-system/aa10/server/apps/ml/rs/model', 'rb') as f:
         lda_model = pickle.load(f)
         
-    with open('/home/rasperrylinux/capstone/job-recommender-system/aa10/server/apps/ml/rs/jobs', 'rb') as f:
+    with open('/Users/saimamunir/Desktop/job-recommender-system/aa10/server/apps/ml/rs/labeled_DF/jobs_with_labels', 'rb') as f:
         jobs = pickle.load(f)
 
     resume1 = remove_punc(resume)
