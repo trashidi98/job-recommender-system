@@ -34,7 +34,7 @@ function OutlineContainer({ jobsList }) {
     <div className='OutlineContainer'>
         {
             jobsList.map((job) => {
-              return <OutlinedCard jobTitle={changeJobTitle(job.jobtitle)} company={changeName(job.company)} score={job.similarity} description={job.description} />
+              return <OutlinedCard jobTitle={changeJobTitle(job.jobtitle)} company={changeName(job.company)} score={job.similarity} description={job.description} label={job.Labels}/>
             })
         }
     </div>

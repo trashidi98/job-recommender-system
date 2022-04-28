@@ -15,13 +15,13 @@ import {useNavigate, useLocation} from "react-router-dom";
 import './OutlinedCard.css'
 
 
-function OutlinedCard({ jobTitle, company, score, description }) {
+function OutlinedCard({ jobTitle, company, score, description, label }) {
 
   var location = useLocation(); 
   const navigate = useNavigate();
 
   function navigateForward() {
-    navigate('/JobDescription', {state: [jobTitle, company, description]})
+    navigate('/JobDescription', {state: [jobTitle, company, description, label]})
   }
 
   const [open, setOpen] = React.useState(false);
@@ -57,6 +57,7 @@ function OutlinedCard({ jobTitle, company, score, description }) {
             <div>
               <h4>{company}</h4>
             </div>
+
 
             <div className="countup">
               <CountUp end={score} useEasing={true} duration={4}/>
