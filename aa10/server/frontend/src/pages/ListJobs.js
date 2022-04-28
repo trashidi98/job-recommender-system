@@ -12,7 +12,7 @@ import CountUp from 'react-countup';
 import Particles from "react-tsparticles";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import { IconButton } from '@mui/material';
-
+import logo from "./logo_jobhunter.png";
 
 function zip(arrays) {
     return arrays[0].map(function(_,i){
@@ -116,6 +116,11 @@ function ListJobs() {
         <div className="list-jobs">
             <OutlineContainer jobsList={processedResults}></OutlineContainer>
         </div>
+
+        <div>
+          <img src={logo} width={250} height={150} alt="logo"/>
+        </div>
+
         </div>
     </div>
   </div>

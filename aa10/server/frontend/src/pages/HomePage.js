@@ -11,6 +11,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextInput from 'react-autocomplete-input';
 import { MuiThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Particles from "react-tsparticles";
+import logo from "./logo_jobhunter.png";
 
 
 import { cities } from '../data/cities';
@@ -201,6 +202,11 @@ function HomePage() {
                 }}> Find Matching Jobs 
             </Button>
             </h5>
+
+            <div>
+              <img src={logo} width={250} height={150} alt="logo"/>
+            </div>
+
           </div>
           
           </div>

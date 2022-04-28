@@ -13,8 +13,7 @@ import './JobDescription.css'
 import DescriptionContainer from '../components/DescriptionContainer';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import { IconButton } from '@mui/material';
-
-
+import logo from "./logo_jobhunter.png";
 
 function JobDescription() {
 
@@ -53,7 +52,7 @@ function JobDescription() {
                         
             <div className="job-description-body">
                 <DescriptionContainer/>
-            </div>        
+            </div>       
             
         </div>
     )
