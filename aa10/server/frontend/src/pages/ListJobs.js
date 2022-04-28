@@ -27,7 +27,8 @@ function createJobObject(zippedArray) {
     object["jobtitle"] = zippedArray[0];
     object["company"] = zippedArray[1];
     object["similarity"] = zippedArray[2]; 
-    object["description"] = zippedArray[3];    
+    object["description"] = zippedArray[3];  
+    object["Labels"] = zippedArray[4];
 
     return object; 
 }
@@ -44,10 +45,15 @@ function processResults(backendObject) {
 
     let jobDescriptionArr = backendObject["job_description"];
 
-  let zippedArrays = zip([jobTitlesArr, companyArr, similarityArr, jobDescriptionArr])
+    let labelsArr = backendObject["Labels"]; 
+
+  let zippedArrays = zip([jobTitlesArr, companyArr, similarityArr, jobDescriptionArr, labelsArr])
 
     for(let i = 0; i < jobTitlesArr.length; i++ ) {
         fullJobsArray.push(createJobObject(zippedArrays[i]));  
+        // console.log(labelsArr[0])
+        // console.log(zippedArrays)
+
     } 
 
     return fullJobsArray; 
