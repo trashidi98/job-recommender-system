@@ -1,7 +1,8 @@
-# job-recommender-system
-A job recommender system built on Python (pytorch), JS (React) and MongoDB (TBD) 
-
-
 # README 
+A ML Driven Job Recommendation System. Access the web app at https://dreamy-gumdrop-71428a.netlify.app/
+Built on Python and JS (React)
 
-A ML Driven Job Recommendation System 
+
+
+
+
